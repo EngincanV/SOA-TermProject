@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 * {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
 }
 /* Navbar Component*/
 .navbar {
   width: 100%;
-  height: 60px;
+  height: 80px;
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0px;
+  padding: 10px 10px;
   box-shadow: 0px 0px 5px 0px #00000040;
 }
 .navbar .brand-navbar {
@@ -29,7 +29,8 @@
   margin-bottom: 0;
 }
 .navbar .items li {
-  margin: 0px 20px;
+  margin: 0px 25px;
+  font-size: 16px;
 }
 .navbar .items li a {
   text-decoration: none;
@@ -101,21 +102,84 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-right: 1px solid #000;
+  margin-right: 40px;
 }
 
 .wrapper .sidebar .sidebar-top {
-  flex: 4;
+  flex: 1;
+}
+.sidebar-top h4 {
+  font-weight: 600;
 }
 .wrapper .sidebar .sidebar-body {
-  flex: 1;
+  flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 200px;
 }
 
+.sidebar-body h5 {
+  font-weight: 400;
+}
+
+.sidebar-body input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.sidebar-body .next-btn {
+  text-decoration: none;
+  border: 1px solid #bababa;
+  width: 120px;
+  padding: 8px;
+  text-align: center;
+  background: #fff;
+  color: #bbb;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24),
+    0 0 8px 0 rgba(102, 113, 138, 0.24), 0 8px 8px 0 rgba(102, 113, 138, 0.24);
+}
+
 .wrapper .map {
   flex: 4;
   height: 500px;
+}
+
+/*Login Componenet*/
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  margin: 15px 0px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type='email'] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type='password'] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
