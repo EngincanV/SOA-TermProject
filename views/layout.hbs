@@ -21,13 +21,27 @@
         <li><a href="/">Home</a></li>
         <li><a href="/match">Match</a></li>
         <li><a href="#">Contact</a></li>
+        {{#if user}}
+        <li><a style="text-decoration: underline;" href="/logout">Logout</a></li>
+        {{else}}
         <li><a style="text-decoration: underline;" href="/signup">Signup</a> </li>
         <li> <a style="text-decoration: underline;" href="/login">Login</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>
 
   <!--Navbar Component Finished-->
+
+  {{#if success_msg}}
+  <div class="alert alert-success">{{success_msg}}</div>
+  {{/if}}
+  {{#if error_msg}}
+  <div class="alert alert-danger">{{error_msg}}</div>
+  {{/if}}
+  {{#if error}}
+  <div class="alert alert-danger">{{error}}</div>
+  {{/if}}
   {{{body}}}
 
   <script src="../javascripts/jquery/jquery.min.js"></script>
