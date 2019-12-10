@@ -7,6 +7,9 @@
       <h5><span><img style="width: 30px; margin-right:10px;" src="/images/location.svg" /></span>Find neighboorhood</h5>
       <input type="text" placeholder="Enter adress,city or coord" />
       <a class="next-btn" href="#">Next</a>
+      {{#if successMsg}}
+      <div class="alert alert-success">{{successMsg}}</div>
+      {{/if}}
     </div>
   </div>
   <div class="map" id="map">
