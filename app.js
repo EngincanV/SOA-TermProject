@@ -7,19 +7,30 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const hbs = require('hbs');
+const hbs = require('express-handlebars');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const matchRouter = require('./routes/match');
 const detailRouter = require('./routes/details');
+const mapRoutes = require('./routes/map');
 
 const app = express();
 
 // view engine setup
 
 app.set('views', path.join(__dirname, './views/'));
+app.engine('handlebars', hbs());
 app.set('view engine', 'hbs');
+app.engine(
+  'hbs',
+  hbs({
+    extname: 'hbs',
+    defaultView: 'default',
+    layoutsDir: __dirname + '/views/pages/',
+    partialsDir: __dirname + '/views/partials/',
+  }),
+);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -53,7 +64,8 @@ app.get('*', function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', matchRouter);
-app.use('/',detailRouter);
+app.use('/', detailRouter);
+app.use('/', mapRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

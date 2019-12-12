@@ -5,12 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+    integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../stylesheets/style.css" />
   <link rel="stylesheet" href="../stylesheets/bootstrap.min.css" />
-    <link rel="stylesheet" href="../stylesheets/style-global.css" />
- 
+  <link rel="stylesheet" href="../stylesheets/style-global.css" />
   <link rel="stylesheet" href="../stylesheets/style-header.css" />
-
   <link rel="stylesheet" href="../stylesheets/style-navbar.css" />
 
   <title>First Page</title>
@@ -26,7 +29,7 @@
       <ul class="items">
         <li><a href="/">Home</a></li>
         <li><a href="/match">Match</a></li>
-        <li><a href="#">Contact</a></li>
+
         {{#if user}}
         <li><a style="text-decoration: underline;" href="/logout">Logout</a></li>
         {{else}}
@@ -39,24 +42,29 @@
 
   <!--Navbar Component Finished-->
 
-  {{#if success_msg}}
-  <div class="alert alert-success">{{success_msg}}</div>
-  {{/if}}
-  {{#if error_msg}}
-  <div class="alert alert-danger">{{error_msg}}</div>
-  {{/if}}
-  {{#if error}}
-  <div class="alert alert-danger">{{error}}</div>
-  {{/if}}
+
+
+
+
   {{{body}}}
 
   <script src="../javascripts/jquery/jquery.min.js"></script>
   <script src='../stylesheets/bootstrap.min.css'>
   </script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY"></script>
-  <script type="text/javascript" src="javascripts/jquery.googlemap.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=b4373fc9-c8eb-4a44-91bb-cae4ba0c5f9e&lang=en_US"
+    type="text/javascript"></script>
+  <script src="https://yastatic.net/s3/mapsapi-jslibs/area/0.0.1/util.calculateArea.min.js"
+    type="text/javascript"></script>
+
   <script src="../javascripts/index.js"></script>
-  <script src="../javascript/initializeGoogleMap.js"></script>
+
 </body>
 
 </html>

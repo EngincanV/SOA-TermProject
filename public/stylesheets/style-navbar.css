@@ -1,8 +1,28 @@
-#nav-ul{
-  display: flex;
-  padding-bottom: 8px;
- }
- #nav-ul li{
-   margin-right: 50px;
- }
+.appbar {
+  padding: 20px 0px;
+  margin: 10px 0px;
+}
 
+.appbar .container {
+  box-shadow: 3px 3px 15px #bbb;
+  padding: 10px 0px;
+}
+
+.row-header {
+  background: red;
+  height: 70px;
+}
+
+.detail-table thead tr th {
+  text-align: center;
+}
+
+.hydrated {
+  font-size: 20px;
+}
+
+.realestate-values {
+  height: 150px;
+  border: 1px solid;
+  margin-top: 20px;
+}
