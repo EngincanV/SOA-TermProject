@@ -3,9 +3,14 @@
   margin: 10px 0px;
 }
 
-.appbar .container {
+.styled-tab {
+  margin-top: 10px;
   box-shadow: 3px 3px 15px #bbb;
   padding: 10px 0px;
+}
+.styled-tab ul li a {
+  color: #0394fc !important;
+  cursor: pointer;
 }
 
 .row-header {

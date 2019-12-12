@@ -1,41 +1,358 @@
-<div class="appbar" id="sticky">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <ul class="justify-content-center nav secondary-navigation" role="" id="nav-ul">
-          <li class="nav-item">
-            <a id="overview_tab" class="nav-link active" data-toggle="" href="/details"><img alt="Overview"
-                class="icon-overview"
-                src="//production-nscout-static-lrsdmrzmrhqefpb9o.netdna-ssl.com/assets/icon-overview-83d2a5a78054571c8b9d6453b0a5f46487028198c156991880c3b026623e2024.svg">
-              <span class="navSpan">Overview</span>
-            </a></li>
-          <li class="nav-item">
-            <a id="real-estate_tab" class="nav-link " data-toggle="" href="/realestate"><img alt="Real Estate"
-                class="hidden-lg-down icon-house"
-                src="//production-nscout-static-lrsdmrzmrhqefpb9o.netdna-ssl.com/assets/icon-house-751658fa63a5b2460b48fbab1fd9247ad8039a1fe8d3f8292897dfc179788e05.svg">
-              <span class="navSpan">Real Estate</span>
-            </a></li>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
+
+<script>
+  window.onload = function () {
+
+    // Construct options first and then pass it as a parameter
+    var options1 = {
+      animationEnabled: true,
+      title: {
+        text: "Chart inside a jQuery Resizable Element"
+      },
+      data: [{
+        type: "column", //change it to line, area, bar, pie, etc
+        legendText: "Try Resizing with the handle to the bottom right",
+        showInLegend: true,
+        dataPoints: [
+          { y: 10 },
+          { y: 6 },
+          { y: 14 },
+          { y: 12 },
+          { y: 19 },
+          { y: 14 },
+          { y: 26 },
+          { y: 10 },
+          { y: 22 }
+        ]
+      }]
+    };
+
+    $("#resizable").resizable({
+      create: function (event, ui) {
+        //Create chart.
+        $("#chartContainer1").CanvasJSChart(options1);
+      },
+      resize: function (event, ui) {
+        //Update chart size according to its container size.
+        $("#chartContainer1").CanvasJSChart().render();
+      }
+    });
+
+  }
+</script>
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+<!--Tab Panel -->
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="styled-tab">
+        <ul class="justify-content-center nav nav-tab" role="tablist" id="myTab">
           <li class="nav-item">
-            <a id="crime_tab" class="nav-link " data-toggle="" href="/crime"><img alt="Crime"
-                class="hidden-lg-down icon-handcuffs"
-                src="//production-nscout-static-lrsdmrzmrhqefpb9o.netdna-ssl.com/assets/icon-handcuffs-e85235da687257cb8a832e70a879b47d94abf52fc6b36537c07bff923fb26838.svg">
-              <span class="navSpan">Crime</span>
-            </a></li>
+            <a class="nav-link active" id="overview-tab" data-toggle="tab" data-target="#overview" role="tab"
+              aria-controls="overview" aria-selected="true">Overview</a>
+          </li>
           <li class="nav-item">
-            <a id="schools_tab" class="nav-link " data-toggle="" href="/schools"><img alt="School"
-                class="hidden-lg-down icon-school"
-                src="//production-nscout-static-lrsdmrzmrhqefpb9o.netdna-ssl.com/assets/icon-school-770ec498d6ba362724dd5b8f0b9cf496d6e6d9be3c94cc3788439014a664f733.svg">
-              <span class="navSpan">Schools</span>
-            </a></li>
+            <a class="nav-link " id="realestate-tab" data-toggle="tab" data-target="#realestate" role="tab"
+              aria-controls="realestate" aria-selected="false">Real Estate</a>
+          </li>
           <li class="nav-item">
-            <a id="schools_tab" class="nav-link " data-toggle="" href="/citydetails"><img alt="School"
-                class="hidden-lg-down icon-school"
-                src="//production-nscout-static-lrsdmrzmrhqefpb9o.netdna-ssl.com/assets/icon-school-770ec498d6ba362724dd5b8f0b9cf496d6e6d9be3c94cc3788439014a664f733.svg">
-              <span class="navSpan">Transportation</span>
-            </a></li>
+            <a class="nav-link " id="school-tab" data-toggle="tab" data-target="#school" role="tab"
+              aria-controls="school" aria-selected="false">School</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " id="crime-tab" data-toggle="tab" data-target="#crime" role="tab" aria-controls="crime"
+              aria-selected="false">Crime</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " id="transportation-tab" data-toggle="tab" data-target="#transportation" role="tab"
+              aria-controls="transportation" aria-selected="false">Transportation</a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="tab-content" id="myTabContent">
+  <!--Overview Component -->
+  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+    <div>
+      <div class="container mt-3">
+        <div class="row row-header d-flex justify-content-center align-items-center">
+          <h3 style="text-align: center;" class="text-white ">540 Total Statistic,45 alert found</h3>
+        </div>
+        <table class="detail-table" id="table" data-toggle="table" data-flat="true" data-search="true"
+          data-url="json/data3.json">
+          <thead>
+            <tr>
+              <th data-sortable="true">
+                <ion-icon name="home"></ion-icon>Real Estate
+              </th>
+              <th data-sortable="true">
+                <ion-icon name="lock"></ion-icon>Crime
+              </th>
+              <th data-sortable="true">
+                <ion-icon name="contacts"></ion-icon>School
+              </th>
+              <th data-sortable="true">Description</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="tab-pane" id="add-comment-disabled">
+              <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                <div class="form-group">
+                  <label for="email" class="col-sm-2 control-label">Comment</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span
+                        class="glyphicon glyphicon-send"></span> Summit comment</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-xs-10 col-md-11">
+                      <div class="comment-text">
+                        Awesome design
+                      </div>
+                      <div class="mic-info">
+                        By: <a href="#">Bhaumik Patel</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Real Estate Component -->
+  <div class="tab-pane fade" id="realestate" role="tabpanel" aria-labelledby="realestate-tab">
+    <div>
+      <div class="container">
+        <div id="resizable" style="height: 370px;border:1px solid gray;">
+          <div id="chartContainer1" style="height: 100%; width: 100%;"></div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="container">
+        <div class="row row-header d-flex justify-content-center align-items-center">
+          <h3 style="text-align: center;" class="text-white ">Average Home Prices and tax rate</h3>
+        </div>
+        <div class="row realestate-values">
+          <div class="col-md-6 col-12 d-flex justify-content-around align-items-center">
+            <div>
+              <ion-icon style="font-size: 40px;" name="home"></ion-icon>
+            </div>
+            <div class="home-values">
+              <h3>Average Home value</h3>
+              <p>500$</p>
+            </div>
+
+          </div>
+          <div class="col-md-6 col-12 d-flex justify-content-around align-items-center">
+            <div>
+              <ion-icon style="font-size: 40px;" name="wallet"></ion-icon>
+            </div>
+            <div class="tax-rates">
+
+              <h3>Tax rates</h3>
+              <p>600$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--School Component -->
+  <div class="tab-pane fade" id="school" role="tabpanel" aria-labelledby="school-tab">
+    <div>
+      <div class="container">
+        <div class="container">
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Violent</th>
+                    <th scope="col">Property</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Number Of Crimes</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Crime Rate
+                      (per 1,000 residents)</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Crime Component -->
+  <div class="tab-pane fade" id="crime" role="tabpanel" aria-labelledby="school-tab">
+    <div class="container">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Violent</th>
+                <th scope="col">Property</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Number Of Crimes</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">Crime Rate
+                  (per 1,000 residents)</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <div class="container" style="border:1px solid red"></div>
+
+
+    <div class="container mt-3">
+      <div class="row row-header d-flex justify-content-center align-items-center">
+        <h3 style="text-align: center;" class="text-white ">540 Total Statistic,45 alert found</h3>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">MURDER
+              INDEX</th>
+            <th scope="col">MURDER
+              INDEX</th>
+            <th scope="col">ROBBERY
+              INDEX</th>
+            <th scope="col">ASSAULT
+              INDEX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>Thornton</td>
+          </tr>
+
+
+        </tbody>
+      </table>
+      <hr>
+
+    </div>
+  </div>
+
+  <!--Transportation Component -->
+  <div class="tab-pane fade" id="transportation" role="tabpanel" aria-labelledby="transportation">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Violent</th>
+                  <th scope="col">Property</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Number Of Crimes</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">Crime Rate
+                    (per 1,000 residents)</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
