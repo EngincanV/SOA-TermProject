@@ -10,46 +10,6 @@
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 
-<script>
-  window.onload = function () {
-
-    // Construct options first and then pass it as a parameter
-    var options1 = {
-      animationEnabled: true,
-      title: {
-        text: "Chart inside a jQuery Resizable Element"
-      },
-      data: [{
-        type: "column", //change it to line, area, bar, pie, etc
-        legendText: "Try Resizing with the handle to the bottom right",
-        showInLegend: true,
-        dataPoints: [
-          { y: 10 },
-          { y: 6 },
-          { y: 14 },
-          { y: 12 },
-          { y: 19 },
-          { y: 14 },
-          { y: 26 },
-          { y: 10 },
-          { y: 22 }
-        ]
-      }]
-    };
-
-    $("#resizable").resizable({
-      create: function (event, ui) {
-        //Create chart.
-        $("#chartContainer1").CanvasJSChart(options1);
-      },
-      resize: function (event, ui) {
-        //Update chart size according to its container size.
-        $("#chartContainer1").CanvasJSChart().render();
-      }
-    });
-
-  }
-</script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 <!--Tab Panel -->
 <div class="container">
@@ -92,8 +52,7 @@
         <div class="row row-header d-flex justify-content-center align-items-center">
           <h3 style="text-align: center;" class="text-white ">540 Total Statistic,45 alert found</h3>
         </div>
-        <table class="detail-table" id="table" data-toggle="table" data-flat="true" data-search="true"
-          data-url="json/data3.json">
+        <table class="detail-table" id="table" data-toggle="table" data-flat="true" data-search="true">
           <thead>
             <tr>
               <th data-sortable="true">
@@ -105,9 +64,19 @@
               <th data-sortable="true">
                 <ion-icon name="contacts"></ion-icon>School
               </th>
-              <th data-sortable="true">Description</th>
+              <th data-sortable="true">
+                <ion-icon name="rose"></ion-icon>Green Space
+              </th>
             </tr>
           </thead>
+          <tbody>
+            <tr class="text-center">
+              <td>{{district.realEstate.rent}}%</td>
+              <td>{{district.crime}}</td>
+              <td>{{district.school}}</td>
+              <td>{{district.others.green}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
@@ -160,13 +129,7 @@
   <!--Real Estate Component -->
   <div class="tab-pane fade" id="realestate" role="tabpanel" aria-labelledby="realestate-tab">
     <div>
-      <div class="container">
-        <div id="resizable" style="height: 370px;border:1px solid gray;">
-          <div id="chartContainer1" style="height: 100%; width: 100%;"></div>
-        </div>
-      </div>
-      <br />
-      <br />
+
       <div class="container">
         <div class="row row-header d-flex justify-content-center align-items-center">
           <h3 style="text-align: center;" class="text-white ">Average Home Prices and tax rate</h3>
@@ -178,7 +141,7 @@
             </div>
             <div class="home-values">
               <h3>Average Home value</h3>
-              <p>500$</p>
+              <p>{{district.realEstate.rent}}</p>
             </div>
 
           </div>
@@ -189,7 +152,7 @@
             <div class="tax-rates">
 
               <h3>Tax rates</h3>
-              <p>600$</p>
+              <p>{{district.tax}}$</p>
             </div>
           </div>
         </div>
@@ -197,42 +160,77 @@
     </div>
   </div>
   <!--School Component -->
-  <div class="tab-pane fade" id="school" role="tabpanel" aria-labelledby="school-tab">
-    <div>
-      <div class="container">
-        <div class="container">
-          <div class="row">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Violent</th>
-                    <th scope="col">Property</th>
-                    <th scope="col">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Number Of Crimes</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Crime Rate
-                      (per 1,000 residents)</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
 
-                </tbody>
-              </table>
-            </div>
-
-          </div>
+  <div class="tab-pane fade" id="crime" role="tabpanel" aria-labelledby="school-tab">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td style="width: 50%" class="columnWithName"><b>Safety in this district</b></td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style='width:{{district.crime}}%' class="progress-bar progress-bar-striped" role="progressbar"
+                      aria-valuenow={{district.crime}} aria-valuemin="0" aria-valuemax="100">
+                      {{district.crime}}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="columnWithName" style="width: 50%"><b>Level of crime in London</b></td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style="width: 61.61%" class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                      aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">61.61%</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="columnWithName" style="width: 50%"><b>Crime increasing in the past 3 years in London</b></td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style="width: 67.75%" class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                      aria-valuenow="67.75" aria-valuemin="0" aria-valuemax="100">67.75%</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 50%" class="columnWithName"><b>Problem people using or dealing drugs in London</b>
+                </td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style="width: 59.49%" class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                      aria-valuenow="59.49" aria-valuemin="0" aria-valuemax="100">59.49%</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 50%" class="columnWithName"><b>Problem property crimes such as vandalism and theft in
+                    London</b></td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style="width: 56.57%" class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                      aria-valuenow="56.57" aria-valuemin="0" aria-valuemax="100">
+                      56.57%
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 50%" class="columnWithName"><b>Problem violent crimes such as assault and armed
+                    robbery</b></td>
+                <td style="width: 50%">
+                  <div class="progress">
+                    <div style="width: 54.13%" class="progress-bar progress-bar-striped" role="progressbar"
+                      aria-valuenow="54.13" aria-valuemin="0" aria-valuemax="100">54.13%</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
       </div>
     </div>
   </div>
@@ -240,34 +238,7 @@
   <div class="tab-pane fade" id="crime" role="tabpanel" aria-labelledby="school-tab">
     <div class="container">
       <div class="row">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Violent</th>
-                <th scope="col">Property</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Number Of Crimes</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">Crime Rate
-                  (per 1,000 residents)</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
 
-            </tbody>
-          </table>
-        </div>
 
       </div>
     </div>
@@ -320,39 +291,65 @@
 
   <!--Transportation Component -->
   <div class="tab-pane fade" id="transportation" role="tabpanel" aria-labelledby="transportation">
-    <div>
-      <div class="container">
-        <div class="row">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Violent</th>
-                  <th scope="col">Property</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Number Of Crimes</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">Crime Rate
-                    (per 1,000 residents)</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-        </div>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td style="width: 50%" class="columnWithName"><b>Green Spaces</b></td>
+              <td style="width: 50%">
+                <div class="progress">
+                  <div style='width:{{district.others.green}}%' class="progress-bar progress-bar-striped"
+                    role="progressbar" aria-valuenow={{district.others.green}} aria-valuemin="0" aria-valuemax="100">
+                    {{district.others.green}}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 50%" class="columnWithName"><b>Travel Info</b></td>
+              <td style="width: 50%">
+                <div class="progress">
+                  <div style='width:{{district.others.travel}}%' class="progress-bar progress-bar-striped"
+                    role="progressbar" aria-valuenow={{district.others.travel}} aria-valuemin="0" aria-valuemax="100">
+                    {{district.others.travel}}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th style="width: 50%" scope="row">Air Pollution</th>
+              <td style="width: 50%">
+                <div class="progress">
+                  <div style="width: 65.79%" class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                    aria-valuenow="65.79" aria-valuemin="0" aria-valuemax="100">
+                    65.79%
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th style="width: 50%" scope="row">Water Pollution</th>
+              <td style="width: 50%">
+                <div class="progress">
+                  <div style="width: 42.91%" class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                    aria-valuenow="42.91" aria-valuemin="0" aria-valuemax="100">
+                    42.91%
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th style="width: 50%" scope="row">Drinking Water Pollution and Inaccessibility</th>
+              <td style="width: 50%">
+                <div class="progress">
+                  <div style="width: 33.56%" class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                    aria-valuenow="33.56" aria-valuemin="0" aria-valuemax="100">
+                    33.56%
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

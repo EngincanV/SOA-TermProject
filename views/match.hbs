@@ -7,7 +7,7 @@
       <h5><span><img style="width: 30px; margin-right:10px;" src="/images/location.svg" /></span>Find neighboorhood</h5>
       <input id="searchKey" type="text" placeholder="Enter adress,city or coord" />
       <a class="next-btn" href="#">Next</a>
-
+      <div class="results"></div>
     </div>
   </div>
   <div class="map" id="map">
@@ -106,6 +106,8 @@
       myMap.geoObjects.events.add('click', function (e) {
         // Getting a reference to the child object where the event occurred.
         var object = e.get('target');
+
+        window.location.href = '/main/' + object.options._options.region;
 
       });
     }
