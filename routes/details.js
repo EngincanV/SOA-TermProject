@@ -1,22 +1,92 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/details', function(req,res){
-    res.render('details');
+const mysql = require('mysql');
+const dbConfig = require('../config/database');
+
+const dbConnection = mysql.createConnection(dbConfig.connection);
+
+dbConnection.query('USE smartlondon');
+dbConnection.on('error', function(err) {
+  console.log('[mysql error]', err);
 });
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.send('Unauthorized !.Please try login');
+// }
 
-router.get('/crime', function(req,res){
-    res.render('crime');
+router.get('/main/:district', function(req, res) {
+  let districtData = {
+    realEstate: {
+      rent: null,
+      schoolCount: null,
+    },
+    school: null,
+    crime: null,
+    others: {
+      green: null,
+      travel: null,
+    },
+    tax: null,
+    district: req.params.district,
+    comments: null,
+  };
+
+  const district = req.params.district;
+
+  let districtId;
+  dbConnection.query(
+    "SELECT id,SchoolCount FROM `geoshape` WHERE lad = '" + district + "'",
+    function(err, rows) {
+      if (err) console.log(err);
+
+      districtId = rows[0].id;
+      districtData.realEstate.schoolCount = rows[0].SchoolCount;
+      dbConnection.query(
+        "SELECT Content FROM `comments` WHERE GeoShapeId = '" +
+          districtId +
+          "'",
+        function(err, rows) {
+          console.log(rows[0]);
+          if (rows[0]) {
+            districtData.comments = rows[0].Content;
+          }
+          districtData.comments = null;
+        },
+      );
+    },
+  );
+  const realestate = `call GetRentPerMonth(?)`;
+
+  dbConnection.query(realestate, req.params.district, function(err, rows) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (rows[0]) {
+        districtData.realEstate.rent = Math.floor(rows[0][0].Rent);
+        districtData.realEstate.schoolCount = rows[0][0].SchoolCount;
+        districtData.tax = rows[0][0].Tax;
+      }
+    }
+  });
+
+  // dbConnection.end();
+  const crime = `call GetSafety(?)`;
+  dbConnection.query(crime, req.params.district, function(err, rows) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (rows[0]) {
+        districtData.school = Math.floor(rows[0][0].Schools * 100);
+        districtData.crime = Math.floor(rows[0][0].Safety * 100);
+        districtData.others.green = Math.floor(rows[0][0].Green * 100);
+        districtData.others.travel = Math.floor(rows[0][0].Travel * 100);
+        res.render('partials/appbar', { district: districtData });
+      }
+    }
+  });
 });
-
-router.get('/demoraphics', function(req,res){
-    res.render('demoraphics');
-});
-router.get('/realestate', function(req,res){
-    res.render('realestate');
-});
-
-
-
 
 module.exports = router;

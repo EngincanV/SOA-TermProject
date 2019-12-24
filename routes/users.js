@@ -25,13 +25,6 @@ router.post(
   }),
 );
 
-// router.post('/login', (req, res, next) => {
-//   passport.authenticate('local-login', {
-//     successRedirect: '/match',
-//     failureRedirect: '/users/login',
-//     failureFlash: true,
-//   })(req, res, next);
-// });
 
 router.post(
   '/signup',

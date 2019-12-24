@@ -6,7 +6,7 @@
       <div class="col-md-12 col-12">
         <div class="content">
           <h1>Search Any information about London</h1>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          <input type="text" class="form-control" id="searchKey" aria-describedby="emailHelp"
             placeholder="Enter Location or Coordinates" />
           <a href="#" class="search-btn">
             <img src="../images/search.svg" alt="search icon" />
@@ -17,4 +17,10 @@
     </div>
   </div>
 </div>
+<script src="../javascripts/jquery/jquery.min.js"></script>
+<script>
+  $('.search-btn').click(function (e) {
+    window.location.href = 'match?s=' + $('#searchKey').val();
+  });
+</script>
 <!--Showcase Component-->

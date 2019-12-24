@@ -111,12 +111,13 @@
 .sidebar-top h4 {
   font-weight: 600;
 }
+
 .wrapper .sidebar .sidebar-body {
   flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 200px;
+  /*height: 200px;*/
 }
 
 .sidebar-body h5 {
@@ -138,11 +139,13 @@
   color: #bbb;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24),
     0 0 8px 0 rgba(102, 113, 138, 0.24), 0 8px 8px 0 rgba(102, 113, 138, 0.24);
+  margin-top: 15px;
+  /*box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 8px 0 rgba(102, 113, 138, 0.24), 0 8px 8px 0 rgba(102, 113, 138, 0.24);*/
 }
 
 .wrapper .map {
   flex: 4;
-  height: 500px;
+  height: 90vh;
 }
 
 /*Login Componenet*/
@@ -182,4 +185,43 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.results {
+  margin-top: 15px;
+}
+
+.result-list {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin: 10px 0px;
+}
+
+.result-list-numbering {
+  display: inline-flex;
+  width: 6%;
+}
+
+.result-list-text {
+  display: inline;
+}
+
+.result-list-link {
+  overflow: hidden;
+  width: 365px;
+  display: inline-flex;
+  margin-right: 10px;
+  line-height: 24px;
+}
+
+.result-list-icon {
+  display: inline;
+  color: #00a7df;
+  margin-left: auto;
+  right: 0;
+}
+
+.result-list-icon i {
+  font-size: 24px;
 }
