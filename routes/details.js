@@ -30,8 +30,34 @@ router.get('/main/:district', function(req, res) {
       travel: null,
     },
     tax: null,
+    district: req.params.district,
+    comments: null,
   };
 
+  const district = req.params.district;
+
+  let districtId;
+  dbConnection.query(
+    "SELECT id,SchoolCount FROM `geoshape` WHERE lad = '" + district + "'",
+    function(err, rows) {
+      if (err) console.log(err);
+
+      districtId = rows[0].id;
+      districtData.realEstate.schoolCount = rows[0].SchoolCount;
+      dbConnection.query(
+        "SELECT Content FROM `comments` WHERE GeoShapeId = '" +
+          districtId +
+          "'",
+        function(err, rows) {
+          console.log(rows[0]);
+          if (rows[0]) {
+            districtData.comments = rows[0].Content;
+          }
+          districtData.comments = null;
+        },
+      );
+    },
+  );
   const realestate = `call GetRentPerMonth(?)`;
 
   dbConnection.query(realestate, req.params.district, function(err, rows) {
